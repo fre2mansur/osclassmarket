@@ -1,0 +1,166 @@
+#review_main {
+	margin: 20px 0;
+	padding: 10px 0;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+#review_main h2 {
+	/*border-bottom: 2px dotted #ddd;
+	padding-bottom: 5px;*/
+}
+.rw_notice {
+	background: #fff0b7;
+	padding: 10px;
+	margin: 1px 0;
+	border-radius: 3px;
+}
+.rw_info {
+	background: #e0f5ff;
+	padding: 10px;
+	margin: 1px 0;
+	border-radius: 3px;
+}
+
+.reviews_list {
+  margin-top: 15px;
+}
+.review_single {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
+}
+.review_single h4 {
+	margin:0 0 5px 0;
+	font-size: 1.25em;
+}
+.review_date {
+	font-size: 12px;
+	opacity: 0.7;
+}
+.review_text {
+	margin-top: 10px;
+}
+.review_text .fa-star,
+.review_ratings .fa-star {
+  color: #FFCC00;
+}
+.review_ratings {
+  margin:5px 0;
+  font-size: 12px;
+}
+.review_ratings .fa {
+	font-size: 1.5em;
+}
+.rating_average {
+	margin-top: 10px;
+}
+.rating_average b { font-weight: bold; position: relative; top: -3px; }
+.rating_label { width: 110px; display: inline-block; }
+.review_form {
+	background: #f6f7f8;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+.field_group {
+	margin-bottom: 15px;
+}
+.field_group label {
+	margin-bottom: 5px;
+	display: block;
+}
+.field_group input#review_title,
+.field_group textarea#review_text {
+	padding: 6px 10px;
+	border: 1px solid #ddd;
+	background: #fff;
+	box-shadow: 0 1px 0 0 #dfd8d8 inset;
+	border-radius: 3px;
+
+}
+.field_group input#review_title {
+	width: 60%;
+}
+.field_group textarea#review_text {
+	width: 90%;
+	min-height: 140px;
+}
+
+.stars {
+  background: url("../images/stars.png") repeat-x 0 0;
+  width: 150px;
+}
+.stars input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.stars input[type="radio"].star-5:checked ~ span {
+  width: 100%;
+}
+.stars input[type="radio"].star-4:checked ~ span {
+  width: 80%;
+}
+.stars input[type="radio"].star-3:checked ~ span {
+  width: 60%;
+}
+.stars input[type="radio"].star-2:checked ~ span {
+  width: 40%;
+}
+.stars input[type="radio"].star-1:checked ~ span {
+  width: 20%;
+}
+.stars label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0!important;
+  padding: 0!important;
+  text-indent: -999em;
+  float: left;
+  position: relative;
+  z-index: 10;
+  background: transparent!important;
+  cursor: pointer;
+}
+.stars label:hover ~ span {
+  background-position: 0 -30px;
+}
+.stars label.star-5:hover ~ span {
+  width: 100% !important;
+}
+.stars label.star-4:hover ~ span {
+  width: 80% !important;
+}
+.stars label.star-3:hover ~ span {
+  width: 60% !important;
+}
+.stars label.star-2:hover ~ span {
+  width: 40% !important;
+}
+.stars label.star-1:hover ~ span {
+  width: 20% !important;
+}
+.stars span {
+  display: block;
+  width: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 30px;
+  background: url("../images/stars.png") repeat-x 0 -60px;
+  -webkit-transition: -webkit-width 0.5s;
+  -moz-transition: -moz-width 0.5s;
+  -ms-transition: -ms-width 0.5s;
+  -o-transition: -o-width 0.5s;
+  transition: width 0.5s;
+}
+.rating_average .dull {
+  opacity: 0.4;
+}
+.field_group:before,
+.field_group:after {
+	display: table;
+  	content: " ";
+}
+.field_group:after {
+	clear: both;
+}

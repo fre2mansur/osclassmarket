@@ -56,7 +56,7 @@ function item_default_image_url() {
  	if(if_item_is_theme()) {
 		$icon = "images/theme_noimage.jpg";
 	} else {
-	      $icon = "images/plugin)_noimage.jpg";
+	      $icon = "images/plugin_noimage.jpg";
 	}
  	return osc_current_web_theme_url($icon);
 }

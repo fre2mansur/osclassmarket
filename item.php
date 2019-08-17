@@ -106,7 +106,7 @@ osc_current_web_theme_path('header.php');
         //     $('.sgallery a').on('next.simplelightbox', function () {
         //         $('#gallery').carousel('next');
         //     });
-        // });
+    });
     </script>
 <?php } ?>
 <?php osc_current_web_theme_path('footer.php'); ?>

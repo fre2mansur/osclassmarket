@@ -1,22 +1,30 @@
-.flashmessage {
-	text-align: center;
-	color: #fff;
-}
-.flashmessage-error {
-	background-color: #dd3636;
-
-}
-.flashmessage-success {
-	background-color: #36dd96
-
-}
-.flashmessage-info {
-	background-color: #36c5dd
-
-}
-.flashmessage-info {
-	background-color: #ddc936
-}
-.flashmessage-ok {
-	background-color:#368cd8
+/* Flashmessages start */
+.flashmessage {
+	text-align: center;
+	color: #fff;
+}
+
+.flashmessage-error {
+	background-color: #dd3636;
+}
+
+.flashmessage-success {
+	background-color: #36dd96
+}
+
+.flashmessage-info {
+	background-color: #36c5dd
+}
+
+.flashmessage-info {
+	background-color: #ddc936
+}
+
+.flashmessage-ok {
+	background-color: #368cd8
+}
+/* Flashmessages end */
+
+.gray-bg {
+	background: #f4f4f4;
 }

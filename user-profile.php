@@ -15,7 +15,7 @@
 <section id="search-data" class="mt-4">
 	<div class="container">
     	<div class="row">
-        	<div class="resp-wrapper col-4">
+        	<div class="resp-wrapper col-md-4">
             	<h2><?php _e('Edit account', 'market'); ?></h2>
                 <?php //osc_run_hook('user_profile_form', osc_user()); ?>
                 <form action="<?php echo osc_base_url(true); ?>" method="post">
@@ -55,7 +55,7 @@
                 </form>
             </div>
             
-            <div class="resp-wrapper col-4">
+            <div class="resp-wrapper col-md-4">
         		<h2><?php _e('Change Password', 'market'); ?></h2>
                 	 <form action="<?php echo osc_base_url(true); ?>" method="post">
                     <input type="hidden" name="page" value="user" />

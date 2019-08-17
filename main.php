@@ -67,40 +67,37 @@
                     <hr />
                 </div>
               </div>
-              
-              
-              
+
+
+
          </div>
      </div>
 </section>-->
-    
-    
+
+
 <section id="top-uploads" style="background: #f4f4f4;" class="pt-4 pb-4">
-	<div class="container">
-     	<h2 class="text-center">Recently Uploads</h2>
+    <div class="container">
+     	<h2 class="text-center">Recently Uploaded</h2>
         <br />
-        
+
         <div class="row">
-        <?php while ( osc_has_latest_items() ) { ?>
-        	<div class="col-md-6">
+            <?php while ( osc_has_latest_items() ) { ?>
+            <div class="col-md-6">
               	<div class="item">
                 	<div class="col-3 float-left">
-                    <img alt="Card image cap" src="<?php echo item_default_image_url(); ?>" class="card-img-top">
+                        <img alt="<?php echo osc_item_title(); ?>" src="<?php echo item_default_image_url(); ?>" class="card-img-top">
                     </div>
                     <div class="col-9">
-                       <h5><b><a class="text-dark" href="<?php echo osc_item_url();?>"><?php echo osc_item_title();?></a></b> <br /><small>by: <a href="<?php echo osc_user_public_profile_url(osc_item_user_id());?>"><?php echo osc_item_contact_name();?></a></small></h5>
-                      <p class="mb-0"><?php echo osc_highlight( strip_tags( osc_item_description()), 25) ; ?></p>
-                      <p class="mb-0 text-secondary"><small><?php echo osc_item_views(); ?> Views</small></p>
+                        <h5><b><a class="text-dark" href="<?php echo osc_item_url();?>"><?php echo osc_item_title(); ?></a></b> <br /><small>by: <a href="<?php echo osc_user_public_profile_url(osc_item_user_id());?>"><?php echo osc_item_contact_name();?></a></small></h5>
+                        <p class="mb-0"><?php echo osc_highlight( strip_tags( osc_item_description()), 25) ; ?></p>
+                        <p class="mb-0 text-secondary"><small><?php echo osc_item_views(); ?> views</small></p>
                     </div>
                     <hr />
                 </div>
-              </div>
-          <?php } ?>
-              
-              
-              
-           </div>
-     </div>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
 </section>
 <?php if(osc_is_admin_user_logged_in()){ ?> <!--Need to remove this condition later-->
 <section id="top-developers" class="pt-4 pb-4">

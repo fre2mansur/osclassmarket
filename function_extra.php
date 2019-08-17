@@ -44,18 +44,23 @@ function set_donation_link($user) {
 	osc_set_preference($user.'_donation_link', Params::getParam('donation_link'), 'market');
 }
 
+function if_item_is_theme() {
+	$aCategories = Category::newInstance()->hierarchy( osc_item_category_id() );
+ 	$parentCategory = osc_get_category('id', $aCategory['fk_i_parent_id']);
+ 	if($aCategories[1]['s_name'] == "Themes") {
+		return true;
+	}
+}
 
 function item_default_image_url() {
- 	// $aCategories = Category::newInstance()->hierarchy( osc_item_category_id() );
- 	// $parentCategory = osc_get_category('id', $aCategory['fk_i_parent_id']);
- 	// $cat = $aCategories[1]['s_name'];
-	 // if($cat == "Themes") {
-	 //    $icon = "images/theme_noimage.jpg";
-	 // } else {
-	      $icon = "images/plugin_noimage.jpg";
-	 // }
+ 	if(if_item_is_theme()) {
+		$icon = "images/theme_noimage.jpg";
+	} else {
+	      $icon = "images/plugin)_noimage.jpg";
+	}
  	return osc_current_web_theme_url($icon);
-}//  function get_file($itemId) {//  	echo osc_get_preference($itemId_.'file', 'market');//  }
+}
+
 
 
 function dev($user){

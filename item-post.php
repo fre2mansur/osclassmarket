@@ -61,7 +61,7 @@
                 <?php if (!get_file(osc_item_id())){ ?>
                 <div class="form-group">
                     <label class="control-label"><?php _e('or upload', 'market'); ?></label>
-                    <input  type="file" name="zip2_file">
+                    <input  type="file" name="zip_file">
                 </div>
                 <?php } else { ?>
                 <div class="form-group">

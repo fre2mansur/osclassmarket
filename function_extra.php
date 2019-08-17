@@ -47,7 +47,7 @@ function set_donation_link($user) {
 function if_item_is_theme() {
 	$aCategories = Category::newInstance()->hierarchy( osc_item_category_id() );
  	$parentCategory = osc_get_category('id', $aCategory['fk_i_parent_id']);
- 	if($aCategories[1]['s_name'] == "Themes") {
+ 	if($aCategories[1]['s_name'] == "Themes" || osc_item_category() == "Themes") {
 		return true;
 	}
 }

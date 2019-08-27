@@ -27,7 +27,7 @@ osc_current_web_theme_path('header.php');
                         <?php if(osc_is_admin_user_logged_in()){ ?>
                         	<button class="btn btn-info">Demo</button>
                         <?php } ?>
-                        <a href="<?php echo download_url(); ?>" class="btn btn-dark">Download</a>
+                        <a id="dwld" href="<?php echo download_url(); ?>" class="btn btn-dark">Download</a>
                     </div>
             	</div>
             </div>

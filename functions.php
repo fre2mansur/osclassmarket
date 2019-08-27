@@ -784,9 +784,10 @@ function run_if_edit($item){
     $itemId = $item['pk_i_id'];
     set_version($itemId);
     set_file_link($itemId);
-   // if(Params::getParam('zip_file')){
+    //if(Params::getParam('zip_file')){
+    if(isset($_FILES['zip_file'])){
     set_file($itemId);
-  //  }
+    }
 }
 function run_if_delete($item){
     delete_version($item);

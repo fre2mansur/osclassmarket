@@ -44,7 +44,7 @@ function set_donation_link($user) {
 	osc_set_preference($user.'_donation_link', Params::getParam('donation_link'), 'market');
 }
 
-function if_item_is_theme() {
+function item_is_theme() {
 	$aCategories = Category::newInstance()->hierarchy( osc_item_category_id() );
  	$parentCategory = osc_get_category('id', $aCategory['fk_i_parent_id']);
  	if($aCategories[1]['s_name'] == "Themes" || osc_item_category() == "Themes") {
@@ -53,12 +53,17 @@ function if_item_is_theme() {
 }
 
 function item_default_image_url() {
- 	if(if_item_is_theme()) {
+ 	if(item_is_theme()) {
 		$icon = "images/theme_noimage.jpg";
 	} else {
 	      $icon = "images/plugin_noimage.jpg";
 	}
  	return osc_current_web_theme_url($icon);
+}
+
+function set_item_downloads_count($item) {
+	$count = +1;
+	osc_set_preference($item.'_download_count', $count, 'market');
 }
 
 

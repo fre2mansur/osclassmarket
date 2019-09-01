@@ -26,22 +26,26 @@
 </section>
 <section id="add-product-content" class="pt-4 pb-4">
 	<div class="container">
-    	
+
     	<div class="row">
         	<div class="col-9">
-        	<h2><?php _e('Add your Product', 'market'); ?></h2>
+            <?php if(!$edit) { ?>
+                <h2><?php _e('Add a product', 'market'); ?></h2>
+            <?php } else { ?>
+                <h2><?php _e('Edit a product', 'market'); ?></h2>
+            <?php } ?>
         	<form name="item" action="<?php echo osc_base_url(true);?>" method="post" enctype="multipart/form-data" id="item-post">
                 <input type="hidden" name="action" value="<?php echo $action; ?>" />
                 <input type="hidden" name="page" value="item" />
-                <?php if($edit){ ?>
+                <?php if($edit) { ?>
                     <input type="hidden" name="id" value="<?php echo osc_item_id();?>" />
                     <input type="hidden" name="secret" value="<?php echo osc_item_secret();?>" />
-                <?php }?>
+                <?php } ?>
               	<div class="form-group">
                     <label class="control-label" for="select_1"><?php _e('Category', 'market'); ?></label>
                    	<?php ItemForm::category_select(null, null, __('Select a category', 'market')); ?>
                 </div>
-                     
+
                 <div class="form-group">
                     <label class="control-label" for="title[<?php echo osc_current_user_locale(); ?>]"><?php _e('Title', 'market'); ?></label>
                     <input id="titleen_US" class="form-control" type="text" value="<?php echo osc_item_title(); ?>" name="title[en_US]">
@@ -59,19 +63,22 @@
                     <input class="form-control" type="text" value="<?php echo get_file_link(osc_item_id()); ?>" name="file_link">
                 </div>
                 <?php if (!get_file(osc_item_id())){ ?>
-                <div class="form-group">
-                    <label class="control-label"><?php _e('or upload', 'market'); ?></label>
-                    <input  type="file" name="zip_file">
-                </div>
+                    <div class="form-group">
+                        <label class="control-label"><?php _e('or upload', 'market'); ?></label>
+                        <input  type="file" name="zip_file">
+                    </div>
                 <?php } else { ?>
-                <div class="form-group">
-                    <label class="control-label" for="title[<?php echo osc_current_user_locale(); ?>]"><?php _e('File', 'market'); ?></label>
-                    <img width="25" src="<?php echo osc_current_web_theme_url("images/rar-icon.jpg"); ?>"> <?php echo get_file(osc_item_id()); ?> <a href="<?php echo osc_item_edit_url()."&file=remove";?>"><small>(Remove and update)</a>
-                </div>
-                    
-               <?php }?>
-                    
-                           
+                    <div class="form-group">
+                        <label class="control-label" for="title[<?php echo osc_current_user_locale(); ?>]"><?php _e('File', 'market'); ?></label>
+                        <img width="25" src="<?php echo osc_current_web_theme_url("images/rar-icon.jpg"); ?>"> <?php echo get_file(osc_item_id()); ?> <a href="<?php echo osc_item_edit_url()."&file=remove";?>"><small>(Remove and update)</a>
+                    </div>
+               <?php } ?>
+               <div class="form-group">
+                   <label class="control-label" for="github_url"><?php _e('GitHub URL', 'market'); ?></label>
+                   <input class="form-control" type="url" value="<?php echo get_github_url(osc_item_id()); ?>" id="github_url" name="github_url">
+               </div>
+
+
                         <?php if( osc_images_enabled_at_items() ) { ?>
                             <div class="photo_container">
                                 <div class="form-group">
@@ -96,7 +103,7 @@
                                     <?php } ?>
                                     <div id='file_tools'>
                                         <a class="color" id='add_file'>Add new</a>
-                                        
+
                                     </div>
                                  </div>
                             </div>
@@ -113,52 +120,52 @@
                     </div>
                 </fieldset>
             </form>
-            
+
         </div>
     </div>
     </div>
 </section>
-        <script type="text/javascript">
-			$(document).ready(function(){
-			var counter = 4;
+<script type="text/javascript">
+	$(document).ready(function(){
+	var counter = 4;
+	$('#del_file').hide();
+	$('#file_tools > #add_file').click(function(){
+		$('#file_tools').before('<div class="file_upload" id="f'+counter+'"><input name="photos[]" type="file"></div>');
+		$('#del_file').fadeIn(0);
+	counter++;
+	});
+	$('#file_tools > #del_file').click(function(){
+		if(counter==3){
 			$('#del_file').hide();
-			$('#file_tools > #add_file').click(function(){
-				$('#file_tools').before('<div class="file_upload" id="f'+counter+'"><input name="photos[]" type="file"></div>');
-				$('#del_file').fadeIn(0);
-			counter++;
-			});
-			$('#file_tools > #del_file').click(function(){
-				if(counter==3){
-					$('#del_file').hide();
-				}   
-				counter--;
-				$('#f'+counter).remove();
-			});
-		});
-				
-</script>
-    <script type="text/javascript">
-		function delete_image(id, item_id,name, secret) {
-        //alert(id + " - "+ item_id + " - "+name+" - "+secret);
-        var result = confirm('<?php echo osc_esc_js( __("This action can't be undone. Are you sure you want to continue?") ); ?>');
-        if(result) {
-            $.ajax({
-                type: "POST",
-                url: '<?php echo osc_base_url(true); ?>?page=ajax&action=delete_image&id='+id+'&item='+item_id+'&code='+name+'&secret='+secret,
-                dataType: 'json',
-                success: function(data){
-                    var class_type = "error";
-                    if(data.success) {
-                        $("div[name="+name+"]").remove();
-                        class_type = "ok";
-                    }
-                    var flash = $("#flash_js");
-                    var message = $('<div>').addClass('pubMessages').addClass(class_type).attr('id', 'flashmessage').html(data.msg);
-                    flash.html(message);
-                    $("#flashmessage").slideDown('slow').delay(3000).slideUp('slow');
-                }
-            });
-        }
 		}
-									</script>
+		counter--;
+		$('#f'+counter).remove();
+	});
+
+    $('select:not(.form-control)').addClass('form-control');
+});
+</script>
+<script type="text/javascript">
+function delete_image(id, item_id,name, secret) {
+    var result = confirm('<?php echo osc_esc_js( __("This action can't be undone. Are you sure you want to continue?") ); ?>');
+    if(result) {
+        $.ajax({
+            type: "POST",
+            url: '<?php echo osc_base_url(true); ?>?page=ajax&action=delete_image&id='+id+'&item='+item_id+'&code='+name+'&secret='+secret,
+            dataType: 'json',
+            success: function(data){
+                var class_type = "error";
+                if(data.success) {
+                    $("div[name="+name+"]").remove();
+                    class_type = "ok";
+                }
+                var flash = $("#flash_js");
+                var message = $('<div>').addClass('pubMessages').addClass(class_type).attr('id', 'flashmessage').html(data.msg);
+                flash.html(message);
+                $("#flashmessage").slideDown('slow').delay(3000).slideUp('slow');
+            }
+        });
+    }
+}
+</script>
 <?php osc_current_web_theme_path('footer.php'); ?>

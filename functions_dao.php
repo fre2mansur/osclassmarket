@@ -19,7 +19,7 @@ function market_dao_install() {
 function market_dao_user_insert_update($user) {
     $data = array(
         'fk_i_user_id' => $user,
-        's_donation_link' => Params::getParam('donation_link')
+        's_donation_link' => osc_esc_html(Params::getParam('donation_link'))
     );
 
     if(MarketModel_User::newInstance()->findByPrimaryKey($user) != false) {
@@ -73,8 +73,9 @@ function market_dao_item_insert_update($item, $insert = true) {
     $itemId = $item['pk_i_id'];
     $data = array(
         'fk_i_item_id' => $itemId,
-        's_file_version' => Params::getParam('file_version'),
-        's_file_link' => Params::getParam('file_link')
+        's_file_version' => osc_esc_html(Params::getParam('file_version')),
+        's_file_link' => osc_esc_html(Params::getParam('file_link')),
+        's_github_url' => osc_esc_html(Params::getParam('github_url')),
     );
 
     if(isset($_FILES['zip_file'])){

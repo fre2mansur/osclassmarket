@@ -12,6 +12,10 @@ function get_file($item) {
 	return market_dao_item_get_field('s_file_zip', $item);
 }
 
+function get_github_url($item) {
+	return market_dao_item_get_field('s_github_url', $item);
+}
+
 function get_downloads($item) {
 	return market_dao_item_get_field('i_downloads', $item);
 }

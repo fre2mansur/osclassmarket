@@ -69,7 +69,7 @@ class MarketModel_Item extends DAO {
         parent::__construct();
         $this->setTableName('t_item_market');
         $this->setPrimaryKey('fk_i_item_id');
-        $this->setFields(array('fk_i_item_id', 's_file_zip', 's_file_link', 's_file_version', 'i_downloads'));
+        $this->setFields(array('fk_i_item_id', 's_file_zip', 's_file_link', 's_file_version', 's_github_url', 'i_downloads'));
     }
 }
 ?>

@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS /*TABLE_PREFIX*/t_item_market (
     s_file_zip TEXT NULL,
     s_file_link TEXT NULL,
     s_file_version VARCHAR(10) NOT NULL DEFAULT '1.0.0',
+    s_github_url TEXT NULL,
     i_downloads INT(10) NOT NULL DEFAULT 0,
 
         PRIMARY KEY(fk_i_item_id),

@@ -1,5 +1,5 @@
 <?php echo osc_current_web_theme_path('header.php'); ?>
-<section id="user-header" style="background: #f4f4f4;" class="pt-4 pb-4">
+<section id="user-header" class="pt-4 pb-4 gray-bg">
 	<div class="container">
     	<div class="row col-md-12">
             <div class="button-group float-right">

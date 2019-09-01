@@ -15,7 +15,7 @@
     }
     ?>
 <?php osc_current_web_theme_path('header.php') ; ?>
-<section id="add-product" style="background: #f4f4f4;" class="pt-4 pb-4">
+<section id="user-header" class="pt-4 pb-4 gray-bg">
 	<div class="container">
     	<div class="row">
             <div class="button-group float-right">
@@ -24,9 +24,8 @@
          </div>
      </div>
 </section>
-<section id="add-product-content" class="pt-4 pb-4">
+<section id="add-product" class="pt-4 pb-4">
 	<div class="container">
-
     	<div class="row">
         	<div class="col-9">
             <?php if(!$edit) { ?>
@@ -70,7 +69,9 @@
                 <?php } else { ?>
                     <div class="form-group">
                         <label class="control-label" for="title[<?php echo osc_current_user_locale(); ?>]"><?php _e('File', 'market'); ?></label>
-                        <img width="25" src="<?php echo osc_current_web_theme_url("images/rar-icon.jpg"); ?>"> <?php echo get_file(osc_item_id()); ?> <a href="<?php echo osc_item_edit_url()."&file=remove";?>"><small>(Remove and update)</a>
+                        <div>
+                            <img width="25" src="<?php echo osc_current_web_theme_url("images/rar-icon.jpg"); ?>"> <?php echo get_file(osc_item_id()); ?> <a href="<?php echo osc_item_edit_url()."&file=remove";?>"><small>(Remove and update)</a>
+                        </div>
                     </div>
                <?php } ?>
                <div class="form-group">

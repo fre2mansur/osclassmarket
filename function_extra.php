@@ -50,10 +50,8 @@ function item_default_image_url() {
 function dev($user) {
 	if(osc_is_web_user_logged_in() && osc_users_enabled()) {
 		if(Session::newInstance()->_get('userCompany') != '') {
-			osc_add_flash_error_message('Used Session');
 			return (bool) Session::newInstance()->_get('userCompany');
 		} else {
-			osc_add_flash_error_message('Used DB');
 			$dev = User::newInstance()->findByPrimaryKey($user);
 			return (bool) $dev['b_company'];
 		}

@@ -796,4 +796,20 @@ function market_user_delete($user) {
     market_dao_user_delete($user);
 }
 osc_add_hook('delete_user', 'market_user_delete');
+
+// Download counter.
+function market_item_download() {
+	$item = Params::getParam('item');
+	if(!is_numeric($item)) {
+		echo json_encode(array('status' => (bool) 0));
+	}
+
+	$data = market_dao_item_get($item);
+	if($data != null) {
+		echo market_dao_item_download($data);
+	} else {
+		echo json_encode(array('status' => (bool) 0));
+	}
+}
+osc_add_hook('ajax_item_download', 'market_item_download');
 ?>

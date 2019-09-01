@@ -12,6 +12,10 @@ function get_file($item) {
 	return market_dao_item_get_field('s_file_zip', $item);
 }
 
+function get_downloads($item) {
+	return market_dao_item_get_field('i_downloads', $item);
+}
+
 function delete_file($item) {
 	return market_dao_item_delete_file($item);
 }
@@ -38,20 +42,15 @@ function item_default_image_url() {
  	return osc_current_web_theme_url($icon);
 }
 
-function set_item_downloads_count($item) {
-	$count = +1;
-	osc_set_preference($item.'_download_count', $count, 'market');
-}
-
-
 
 function dev($user){
 	$dev = User::newInstance()->findByPrimaryKey($user);
-	if($dev['b_company'] == 1) { return true;	}
-		return false;
+	if($dev['b_company'] == 1) {
+		return true;
 	}
 
-function market_total_downloads_count($itemId) {	return 0;}
+	return false;
+}
 
 function item_version() {
 	return get_version(osc_item_id());

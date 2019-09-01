@@ -131,4 +131,15 @@ function market_dao_item_get_field($field, $item) {
         return '';
     }
 }
+
+function market_dao_item_download($data) {
+    $item = $data['fk_i_item_id'];
+    $update = array('i_downloads' => $data['i_downloads'] + 1);
+    $result = MarketModel_Item::newInstance()->updateByPrimaryKey($update, $item);
+    if($result) {
+        return json_encode(array('status' => (bool) 1));
+    } else {
+        return json_encode(array('status' => (bool) 0));
+    }
+}
 ?>

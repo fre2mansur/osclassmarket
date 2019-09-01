@@ -812,4 +812,17 @@ function market_item_download() {
 	}
 }
 osc_add_hook('ajax_item_download', 'market_item_download');
+
+// Save b_company to session to lower database usage.
+function market_set_company($user, $url = null) {
+	$company = $user['b_company'];
+	Session::newInstance()->_set('userCompany', $company);
+}
+osc_add_hook('after_login', 'market_set_company');
+osc_add_hook('validate_user', 'market_set_company');
+
+function market_unset_company() {
+	Session::newInstance()->_drop('userCompany');
+}
+osc_add_hook('logout', 'market_unset_company');
 ?>

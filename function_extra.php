@@ -53,6 +53,7 @@ function dev($user) {
 			return (bool) Session::newInstance()->_get('userCompany');
 		} else {
 			$dev = User::newInstance()->findByPrimaryKey($user);
+			Session::newInstance()->_set('userCompany', $dev['b_company']);
 			return (bool) $dev['b_company'];
 		}
 	}

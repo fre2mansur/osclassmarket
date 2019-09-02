@@ -3,7 +3,7 @@
 DEFINES
 */
 define('MARKET_THEME_VERSION', '1000');
-define('MARKET_FOLDER', 'market');
+define('MARKET_FOLDER', 'market_theme');
 define('MARKET_PATH', osc_content_path().'themes/'.MARKET_FOLDER.'/');
 
 /**
@@ -84,7 +84,7 @@ if( !function_exists('market_theme_update') ) {
         osc_set_preference('version', '1000', 'market');
         osc_reset_preferences();
 
-		market_dao_install();
+	
     }
 }
 if(!function_exists('check_install_market_theme')) {
@@ -96,6 +96,7 @@ if(!function_exists('check_install_market_theme')) {
         } else if($current_version < MARKET_THEME_VERSION){
             market_theme_update($current_version);
         }
+        market_dao_install();
     }
 }
 if(!function_exists('market_add_body_class_construct')) {

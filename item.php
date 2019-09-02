@@ -20,7 +20,7 @@ osc_current_web_theme_path('header.php');
                     <p class="mb-1">Version: <?php echo item_version(); ?> | Licence: Free | Author: <a href="<?php echo osc_user_public_profile_url(osc_item_user_id());?>"><?php echo osc_item_contact_name();?></a></p>
 
                     <p class="mb-0"><?php echo osc_highlight(strip_tags(osc_item_description()), 100); ?></p>
-                    <p class="mb-0 text-secondary"><small><?php echo osc_item_views(); ?> views | X downloads</small></p>
+                    <p class="mb-0 text-secondary"><small><?php echo osc_item_views(); ?> views | <?php echo get_downloads(osc_item_id()); ?> downloads</small></p>
                 </div>
               	<div class="col-5 ml-auto">
                    	<div class="buttons mt-4">
@@ -98,18 +98,23 @@ osc_current_web_theme_path('header.php');
         </div>
     </div>
 </section>
-<?php if(osc_count_item_resources() > 0) { ?>
-    <script>
-    $(function() {
-        var sgallery = $('.sgallery a').simpleLightbox();
-        // Not sure if required. Moves bootstrap carousel when lightbox carousel moved.
-        //     $('.sgallery a').on('prev.simplelightbox', function () {
-        //         $('#gallery').carousel('prev');
-        //     });
-        //     $('.sgallery a').on('next.simplelightbox', function () {
-        //         $('#gallery').carousel('next');
-        //     });
+<script>
+$(function() {
+    <?php if(osc_count_item_resources() > 0) { ?>
+    var sgallery = $('.sgallery a').simpleLightbox();
+    <?php } ?>
+
+    $('#dwld').click(function() {
+        $.ajax({
+            url: "<?php echo osc_ajax_hook_url('item_download', array('item' => osc_item_id())); ?>",
+            success: function(result) {
+                var json = JSON.parse(result);
+                if(!json.status) {
+                    console.log('Download count not updated.');
+                }
+            }
+        });
     });
-    </script>
-<?php } ?>
+});
+</script>
 <?php osc_current_web_theme_path('footer.php'); ?>

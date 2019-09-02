@@ -5,7 +5,7 @@
     <div class="col-md-9">
        <h5><b><a class="text-dark" href="<?php echo osc_item_url();?>"><?php echo osc_highlight(osc_item_title(), '50');?></a></b> <br /><small>by: <a href="<?php echo osc_user_public_profile_url(osc_item_user_id());?>"><?php echo osc_item_contact_name();?></a> </small></h5>
       <p class="mb-0"><?php echo osc_highlight( strip_tags( osc_item_description()), 50) ; ?></p>
-      <p class="mb-0 text-secondary"><small><?php echo osc_item_views(); ?> Views</small></p>
+      <p class="mb-0 text-secondary"><small><?php echo get_downloads(osc_item_id()); ?> downloads</small></p>
             <?php if($admin){ ?>
                     <span class="admin-options">
                         <a href="<?php echo osc_item_edit_url(); ?>" rel="nofollow"><?php _e('Edit item', 'market'); ?></a>

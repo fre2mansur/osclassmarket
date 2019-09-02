@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS /*TABLE_PREFIX*/t_user_market;
+DROP TABLE IF EXISTS /*TABLE_PREFIX*/t_item_market;

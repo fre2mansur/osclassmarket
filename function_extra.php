@@ -1,49 +1,34 @@
-<?php 
-//Delete preference
-function delete_file_link($item) {
-	osc_delete_preference($item.'_file_link', 'market');
-}
-function delete_version($item) {
-	osc_delete_preference($item.'_file_version', 'market');
-}
-function delete_file($item) {
-	osc_delete_preference($item.'_zip_file', 'market');
-}
-function delete_donation_link($user) {
-	osc_delete_preference($user.'_donation_link', 'market');
-}
-
-//Get preference
+<?php
+// Additional fields.
 function get_file_link($item) {
-	return osc_get_preference($item.'_file_link', 'market');
+	return market_dao_item_get_field('s_file_link', $item);
 }
+
 function get_version($item) {
-	return osc_get_preference($item.'_file_version', 'market');
+	return market_dao_item_get_field('s_file_version', $item);
 }
+
 function get_file($item) {
-	return osc_get_preference($item.'_zip_file', 'market');
+	return market_dao_item_get_field('s_file_zip', $item);
 }
+
+function get_github_url($item) {
+	return market_dao_item_get_field('s_github_url', $item);
+}
+
+function get_downloads($item) {
+	return market_dao_item_get_field('i_downloads', $item);
+}
+
+function delete_file($item) {
+	return market_dao_item_delete_file($item);
+}
+
 function get_donation_link($user) {
-	return osc_get_preference($user.'_donation_link', 'market');
+	return market_dao_user_get_field('s_donation_link', $user);
 }
 
-//Store preference
-function set_file_link($item) {
-	osc_set_preference($item.'_file_link', Params::getParam('file_link'), 'market');
-}
-function set_version($item) {
-	osc_set_preference($item.'_file_version', Params::getParam('file_version'), 'market');
-}
-function set_file($item) {
-		$target_dir = osc_content_path()."uploads/";
-		$target_file = $target_dir . basename($item."_".$_FILES["zip_file"]["name"]);
-		move_uploaded_file($_FILES["zip_file"]["tmp_name"], $target_file);		 
-		osc_set_preference($item.'_zip_file', $item."_".$_FILES["zip_file"]["name"], 'market');
-}
-function set_donation_link($user) {
-	osc_set_preference($user.'_donation_link', Params::getParam('donation_link'), 'market');
-}
-
+// Helpers.
 function item_is_theme() {
 	$aCategories = Category::newInstance()->hierarchy( osc_item_category_id() );
  	$parentCategory = osc_get_category('id', $aCategory['fk_i_parent_id']);
@@ -61,29 +46,33 @@ function item_default_image_url() {
  	return osc_current_web_theme_url($icon);
 }
 
-function set_item_downloads_count($item) {
-	$count = +1;
-	osc_set_preference($item.'_download_count', $count, 'market');
+
+function dev($user) {
+	if(osc_is_web_user_logged_in() && osc_users_enabled()) {
+		if(Session::newInstance()->_get('userCompany') != '') {
+			return (bool) Session::newInstance()->_get('userCompany');
+		} else {
+			$dev = User::newInstance()->findByPrimaryKey($user);
+			return (bool) $dev['b_company'];
+		}
+	}
+
+	return false;
 }
 
+function item_version() {
+	return get_version(osc_item_id());
 
-
-function dev($user){
-	$dev = User::newInstance()->findByPrimaryKey($user);
-	if($dev['b_company'] == 1) { return true;	}
-		return false;
-	}
-		
-function market_total_downloads_count($itemId) {	return 0;}
-
-function item_version() {	return get_version(osc_item_id());}function download_url(){
+}
+function download_url(){
 	$id = osc_item_id();
-	if(get_file_link($id)) {
+	if(get_file_link($id) != '') {
 		return get_file_link($id);
 	} else {
 		return osc_base_url()."oc-content/uploads/".get_file(osc_item_id());
 	}
 }
+
 function user_total_plugins() { }
 
 function user_total_themes() { }

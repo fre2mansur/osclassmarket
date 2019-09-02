@@ -862,6 +862,20 @@ function market_user_avatar_install() {
     osc_add_flash_ok_message('Theme updated, avatars added for previously registered users.');
 }
 
+function market_get_avatar($user, $thumb = false) {
+    $name = market_dao_user_get_field('s_profile_pic', $user);
+    if($name != '') {
+        $url = osc_base_url().'oc-content/uploads/avatars/';
+        $url .= ($thumb) ? 'thumbnails/' : '';
+        $url .= $user.'/'.$name;
+    } else {
+        $url = osc_base_url().'oc-content/themes/'.MARKET_FOLDER.'/images/';
+        $url .= (!$thumb) ? 'default.jpg' : 'default_thumb.jpg';
+    }
+
+    return $url;
+}
+
 // Download counter.
 function market_item_download() {
 	$item = Params::getParam('item');

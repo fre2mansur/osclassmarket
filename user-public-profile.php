@@ -15,7 +15,7 @@
     	<div class="row">
         	<div class="col-12">
             	<div class="float-left">
-            		<?php //echo show_letter_avatar(osc_user_name()); ?>
+            		<img src="<?php echo market_get_avatar(osc_user_id()); ?>" alt="<?php echo osc_user_name(); ?>" title="<?php echo osc_user_name(); ?>" class="img-fluid" width="150">
                 </div>
             	<div class="col-7 float-left">
                    <h5><strong><?php echo osc_user_name();?></strong> </h5>

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "intervention/image": "^2.5",
+        "yohang88/letter-avatar": "^2.1"
+    }
+}

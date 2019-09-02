@@ -60,6 +60,7 @@ function market_dao_user_get_field($field, $user) {
 
 function market_dao_user_register_avatar($name, $user) {
     $data = array(
+        'fk_i_user_id' => $user,
         's_profile_pic' => osc_esc_html($name),
     );
 

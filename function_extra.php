@@ -74,12 +74,41 @@ function download_url(){
 	}
 }
 
-function user_total_plugins() { }
+function user_total_plugins($user) {
+	if(!is_numeric($user)) {
+		return 0;
+	}
 
-function user_total_themes() { }
+	return MarketModel_CoreItem::newInstance()->countByCategoryUser(MARKET_PLUGINS_CATID, $user);
+}
 
+function user_total_themes($user) {
+	if(!is_numeric($user)) {
+		return 0;
+	}
 
+	return MarketModel_CoreItem::newInstance()->countByCategoryUser(MARKET_THEMES_CATID, $user);
+}
 
+function user_total_plugins_formatted($user) {
+	$count = user_total_plugins($user);
+	if($count === 0) {
+		return '<strong>No</strong> plugins';
+	} elseif($count === 1) {
+		return '<strong>1</strong> plugin';
+	} else {
+		return '<strong>'.$count.'</strong> plugins';
+	}
+}
 
-
+function user_total_themes_formatted($user) {
+	$count = user_total_themes($user);
+	if($count === 0) {
+		return '<strong>No</strong> themes';
+	} elseif($count === 1) {
+		return '<strong>1</strong> theme';
+	} else {
+		return '<strong>'.$count.'</strong> themes';
+	}
+}
 ?>

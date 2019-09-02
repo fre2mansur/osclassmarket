@@ -72,4 +72,56 @@ class MarketModel_Item extends DAO {
         $this->setFields(array('fk_i_item_id', 's_file_zip', 's_file_link', 's_file_version', 's_github_url', 'i_downloads'));
     }
 }
+
+class MarketModel_CoreItem extends DAO {
+    private static $instance;
+
+    public static function newInstance() {
+        if(!self::$instance instanceof self) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
+    function __construct() {
+        parent::__construct();
+        $this->setTableName('t_item');
+        $this->setPrimaryKey('pk_i_id');
+        $this->setFields(array(
+            'pk_i_id',
+            'fk_i_user_id',
+            'fk_i_category_id',
+            'dt_pub_date',
+            'dt_mod_date',
+            'f_price',
+            'i_price',
+            'fk_c_currency_code',
+            's_contact_name',
+            's_contact_email',
+            'b_premium',
+            's_ip',
+            'b_enabled',
+            'b_active',
+            'b_spam',
+            's_secret',
+            'b_show_email',
+            'dt_expiration'
+        ));
+    }
+
+    public function countByCategoryUser($category, $user) {
+        $this->dao->select('count(*) as total');
+        $this->dao->from($this->getTableName().' i');
+        $this->dao->join(DB_TABLE_PREFIX.'t_category c', 'c.pk_i_id = i.fk_i_category_id');
+        $this->dao->where('i.fk_i_category_id', $category);
+        $this->dao->where('i.fk_i_user_id', $user);
+
+        $result = $this->dao->get();
+        if($result == false) {
+            return 0;
+        }
+        $total_ads = $result->row();
+        return (int) $total_ads['total'];
+    }
+}
 ?>

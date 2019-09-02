@@ -82,12 +82,19 @@ osc_current_web_theme_path('header.php');
                 		<?php //echo show_avatar(osc_item_user_id()); ?>
                     </div>
                     <div class="author">
-                        <h5><strong><a class="text-dark" href="<?php echo osc_user_public_profile_url();?>"><?php echo osc_item_contact_name();?></a></strong> </h5>
-                        <?php if(osc_is_admin_user_logged_in()) { ?>
-                            <h5><small><?php echo user_total_plugins(osc_item_user_id()); ?> plugins | <?php echo user_total_themes(osc_item_user_id()); ?> themes  <?php if(osc_is_admin_user_logged_in()){ ?>| 140 posts <?php } ?></small></h5>
-                            <p><button class="btn btn-danger btn-sm">Follow</button> 120 followers <br /></p>
-                            <button class="btn btn-success">Job offer</button>
-                        <?php } ?>
+                        <img src="<?php echo market_get_avatar(osc_item_user_id(), true); ?>" alt="<?php echo osc_user_name(); ?>" title="<?php echo osc_user_name(); ?>" class="img-fluid mb-2" width="96">
+                        <h5><strong><a class="text-dark" href="<?php echo osc_user_public_profile_url(); ?>"><?php echo osc_item_contact_name();?></a></strong></h5>
+                        <p>
+                            <span class="count-plugins"><?php echo user_total_plugins_formatted(osc_item_user_id()); ?></span>
+                            <span class="count-divider"> | </span>
+                            <span class="count-themes"><?php echo user_total_themes_formatted(osc_item_user_id()); ?></span>
+                             <?php if(osc_is_admin_user_logged_in()) { ?>
+                                 <span class="count-divider"> | </span>
+                                 <span class="count-posts"><strong><?php echo rand(10, 99); ?></strong> posts</span>
+                                 <p><button class="btn btn-danger btn-sm">Follow</button> <span>120 followers</span></p>
+                                 <button class="btn btn-success">Job offer</button>
+                             <?php } ?>
+                        </p>
                     </div>
 
                  <?php if(osc_get_preference('donation_link', 'donation_link_'.osc_item_user_id()) !=''){ ?>

@@ -110,6 +110,8 @@ class MarketModel_CoreItem extends DAO {
     }
 
     public function countByCategoryUser($category, $user) {
+        $category = Category::newInstance()->findRootCategory($category)['pk_i_id'];
+
         $this->dao->select('count(*) as total');
         $this->dao->from($this->getTableName().' i');
         $this->dao->join(DB_TABLE_PREFIX.'t_category c', 'c.pk_i_id = i.fk_i_category_id');

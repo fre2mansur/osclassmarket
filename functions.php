@@ -3,7 +3,7 @@
 DEFINES
 */
 define('MARKET_THEME_VERSION', '1001');
-define('MARKET_FOLDER', 'market');
+define('MARKET_FOLDER', 'market_theme');
 define('MARKET_PATH', osc_content_path().'themes/'.MARKET_FOLDER.'/');
 define('MARKET_PLUGINS_CATID', 96);
 define('MARKET_THEMES_CATID', 97);
@@ -91,7 +91,6 @@ if( !function_exists('market_theme_update') ) {
 
         osc_set_preference('version', MARKET_THEME_VERSION, 'market');
         osc_reset_preferences();
-
         if($current_version < 1001) {
             market_user_avatar_install();
         }
@@ -106,6 +105,7 @@ if(!function_exists('check_install_market_theme')) {
         } else if($current_version < MARKET_THEME_VERSION){
             market_theme_update($current_version);
         }
+        market_dao_install();
     }
 }
 if(!function_exists('market_add_body_class_construct')) {

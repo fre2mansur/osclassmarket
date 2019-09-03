@@ -2,13 +2,20 @@
 /**
 DEFINES
 */
-define('MARKET_THEME_VERSION', '1000');
+define('MARKET_THEME_VERSION', '1001');
 define('MARKET_FOLDER', 'market_theme');
 define('MARKET_PATH', osc_content_path().'themes/'.MARKET_FOLDER.'/');
+define('MARKET_PLUGINS_CATID', 96);
+define('MARKET_THEMES_CATID', 97);
 
 /**
 INCLUDES
 */
+// Composer.
+require 'vendor/autoload.php';
+use Intervention\Image\ImageManager;
+use YoHang88\LetterAvatar\LetterAvatar;
+
 include 'functions_dao.php';
 include 'function_extra.php';
 include 'classes/RandomColor.php';
@@ -81,10 +88,12 @@ if( !function_exists('market_theme_update') ) {
             $img->saveToFile(osc_uploads_path().$logo_name);
             osc_set_preference('logo', $logo_name, 'market');
         }
-        osc_set_preference('version', '1000', 'market');
-        osc_reset_preferences();
 
-	
+        osc_set_preference('version', MARKET_THEME_VERSION, 'market');
+        osc_reset_preferences();
+        if($current_version < 1001) {
+            market_user_avatar_install();
+        }
     }
 }
 if(!function_exists('check_install_market_theme')) {
@@ -797,6 +806,75 @@ function market_user_delete($user) {
     market_dao_user_delete($user);
 }
 osc_add_hook('delete_user', 'market_user_delete');
+
+// Add letter avatar on register.
+function market_avatar_path($user = null, $thumb = null) {
+    $path = osc_content_path().'uploads/avatars/';
+    if($thumb === true) {
+        $path .= 'thumbnails/';
+    }
+    if(is_numeric($user)) {
+        $path .= $user.'/';
+    }
+
+    if (!file_exists($path)) {
+        mkdir($path, 0777, true);
+    }
+
+    return $path;
+}
+
+function market_user_register($user) {
+    $user = User::newInstance()->findByPrimaryKey($user);
+
+    $name = uniqid('letter_').'.jpg';
+    // Regular sized.
+    $path = market_avatar_path($user['pk_i_id'], false);
+    $avatar = new LetterAvatar($user['s_name'], 'square', 192);
+    $avatar->saveAs($path.$name, LetterAvatar::MIME_TYPE_JPEG, 95); // Save regular sized letter avatar in JPG format with 95 quality.
+
+    // Thumbnail.
+    $path = market_avatar_path($user['pk_i_id'], true);
+    $avatar = new LetterAvatar($user['s_name'], 'square', 96);
+    $avatar->saveAs($path.$name, LetterAvatar::MIME_TYPE_JPEG, 95); // Save thumb sized letter avatar in JPG format with 95 quality.
+
+    market_dao_user_register_avatar($name, $user['pk_i_id']);
+}
+osc_add_hook('user_register_completed', 'market_user_register');
+
+function market_user_avatar_install() {
+    $users = User::newInstance()->listAll();
+    foreach($users as $user) {
+        $name = uniqid('letter_').'.jpg';
+        // Regular sized.
+        $path = market_avatar_path($user['pk_i_id'], false);
+        $avatar = new LetterAvatar($user['s_name'], 'square', 192);
+        $avatar->saveAs($path.$name, LetterAvatar::MIME_TYPE_JPEG, 95); // Save regular sized letter avatar in JPG format with 95 quality.
+
+        // Thumbnail.
+        $path = market_avatar_path($user['pk_i_id'], true);
+        $avatar = new LetterAvatar($user['s_name'], 'square', 96);
+        $avatar->saveAs($path.$name, LetterAvatar::MIME_TYPE_JPEG, 95); // Save thumb sized letter avatar in JPG format with 95 quality.
+
+        market_dao_user_register_avatar($name, $user['pk_i_id']);
+    }
+
+    osc_add_flash_ok_message('Theme updated, avatars added for previously registered users.');
+}
+
+function market_get_avatar($user, $thumb = false) {
+    $name = market_dao_user_get_field('s_profile_pic', $user);
+    if($name != '') {
+        $url = osc_base_url().'oc-content/uploads/avatars/';
+        $url .= ($thumb) ? 'thumbnails/' : '';
+        $url .= $user.'/'.$name;
+    } else {
+        $url = osc_base_url().'oc-content/themes/'.MARKET_FOLDER.'/images/';
+        $url .= (!$thumb) ? 'default.jpg' : 'default_thumb.jpg';
+    }
+
+    return $url;
+}
 
 // Download counter.
 function market_item_download() {

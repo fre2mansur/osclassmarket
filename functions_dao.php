@@ -58,6 +58,19 @@ function market_dao_user_get_field($field, $user) {
     }
 }
 
+function market_dao_user_register_avatar($name, $user) {
+    $data = array(
+        'fk_i_user_id' => $user,
+        's_profile_pic' => osc_esc_html($name),
+    );
+
+    if(MarketModel_User::newInstance()->findByPrimaryKey($user) != false) {
+        return MarketModel_User::newInstance()->updateByPrimaryKey($data, $user);
+    } else {
+        return MarketModel_User::newInstance()->insert($data);
+    }
+}
+
 /*
 ** ITEM
 */

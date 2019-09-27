@@ -28,3 +28,8 @@
 .gray-bg {
 	background: #f4f4f4;
 }
+
+/* Navbar logo. */
+.navbar-brand img {
+	max-height: 3rem;
+}

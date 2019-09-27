@@ -42,7 +42,7 @@
     	<div class="container p-2">
             <nav class="navbar navbar-light navbar-expand-lg">
                 <a href="<?php echo osc_base_url(); ?>" class="navbar-brand text-dark">
-                    <strong>Osclass Community</strong>
+                    <img src="https://osclasscommunity.com/osccommunity.png" alt="Osclass Community" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNav" aria-controls="headerNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

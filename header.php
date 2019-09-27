@@ -2,17 +2,24 @@
 <head>
     <title>Osclass Community</title>
     <?php if(osc_is_ad_page()) { ?>
-      <meta name="title" content="<?php echo osc_item_title();?> - Osclass Community">
+      <meta name="title" content="<?php echo osc_item_title();?> - Osclass Community Market">
+      <meta property="og:title" content="<?php echo osc_item_title();?> - Osclass Community Market">
+      <meta name="description" content="<?php echo osc_item_title(); ?> - Osclass Community Market - one-stop website for Osclass products.">
+      <meta property="og:description" content="<?php echo osc_item_title(); ?> - Osclass Community Market - one-stop website for Osclass products.">
     <?php } else { ?>
-      <meta name="title" content="Osclass Community">
+      <meta name="title" content="Osclass Community Market">
+      <meta property="og:title" content="Osclass Community Market">
+      <meta name="description" content="Osclass Community Market is the one-stop website to help Osclass users and developers get free Osclass themes, plugins and other resources.">
+      <meta property="og:description" content="Osclass Community Market is the one-stop website to help Osclass users and developers get free Osclass themes, plugins and other resources.">
     <?php } ?>
-    <meta name="description" content="Osclass community is the one stop website to help Osclass users and developers get free Osclass themes, plugins and other resources.">
-    <meta name="keywords" content="osclass, osclass community, osclass themes, osclass plugins, free osclass themes. free osclass plugins, osclass plugin, osclass theme, osclass cms, open source classified script, php classifieds">
+    <meta property="og:site_name" content="Osclass Community Market">
+	<meta property="og:url" content="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
+	<meta name="theme-color" content="#17a2b8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="<?php echo osc_current_web_theme_url("css/bootstrap.min.css");?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo osc_current_web_theme_url('css/style.css');?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo osc_current_web_theme_url('css/style.css?v=1002');?>">
     <?php if(osc_is_ad_page()) { ?>
         <link rel="stylesheet" href="<?php echo osc_current_web_theme_url('css/simplelightbox.min.css');?>" />
     <?php } ?>

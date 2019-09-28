@@ -77,7 +77,13 @@
                             </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="http://forums.osclasscommunity.com">Forum</a>
+                            <a class="nav-link text-dark" href="https://forums.osclasscommunity.com">Forums</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="https://forums.osclasscommunity.com/Osclass_380_NoMarket.zip">Osclass 3.8.0</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="https://github.com/navjottomer/Osclass">GitHub</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-dark" href="<?php echo osc_item_post_url(); ?>">UPLOAD</a>

@@ -1,19 +1,15 @@
 <html lang="en">
 <head>
-    <title>Osclass Community</title>
-    <?php if(osc_is_ad_page()) { ?>
-      <meta name="title" content="<?php echo osc_item_title();?> - Osclass Community Market">
-      <meta property="og:title" content="<?php echo osc_item_title();?> - Osclass Community Market">
-      <meta name="description" content="<?php echo osc_item_title(); ?> - Osclass Community Market - one-stop website for Osclass products.">
-      <meta property="og:description" content="<?php echo osc_item_title(); ?> - Osclass Community Market - one-stop website for Osclass products.">
-    <?php } else { ?>
-      <meta name="title" content="Osclass Community Market">
-      <meta property="og:title" content="Osclass Community Market">
-      <meta name="description" content="Osclass Community Market is the one-stop website to help Osclass users and developers get free Osclass themes, plugins and other resources.">
-      <meta property="og:description" content="Osclass Community Market is the one-stop website to help Osclass users and developers get free Osclass themes, plugins and other resources.">
+    <title><?php echo meta_title(); ?></title>
+    <meta name="title" content="<?php echo osc_esc_html(meta_title()); ?>" />
+    <?php if(meta_description() != '') { ?>
+        <meta name="description" content="<?php echo osc_esc_html(meta_description()); ?>" />
     <?php } ?>
-    <meta property="og:site_name" content="Osclass Community Market">
-	<meta property="og:url" content="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
+    <?php if(osc_get_canonical() != '') { ?>
+        <link rel="canonical" href="<?php echo osc_get_canonical(); ?>"/>
+    <?php } ?>
+    <?php osc_run_hook('header'); ?>
+
 	<meta name="theme-color" content="#17a2b8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -1,16 +1,17 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <?php osc_current_web_theme_path('header.php'); ?>
 <section id="search-header">
     <div class="jumbotron jumbotron-fluid text-center bg-info text-white mb-0">
         <div class="container">
-            <h1>Osclass Community</h1>
-            <p>Free Osclass plugins and themes</p>
-            <a href="https://github.com/navjottomer/Osclass/archive/master.zip" class="btn btn-lg btn-dark">Download Osclass</a>
-            <p class="mt-2">(Community Edition)</p>
+            <h1>Osclass Community Market</h1>
+            <p>Free Osclass plugins and themes.</p>
+            <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                <a href="https://forums.osclasscommunity.com/Osclass_380_NoMarket.zip" class="btn btn-lg btn-dark">Osclass (NoMarket)</a>
+                <a href="https://github.com/navjottomer/Osclass/archive/master.zip" class="btn btn-lg btn-secondary">Osclass 3.8 beta 2</a>
+            </div>
         </div>
     </div>
 </section>
-
 
 <!--<section id="top-downloads">
      <div class="container">

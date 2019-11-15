@@ -5,10 +5,7 @@
         <div class="container">
             <h1>Osclass Community Market</h1>
             <p>Free Osclass plugins and themes.</p>
-            <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                <a href="https://forums.osclasscommunity.com/Osclass_380_NoMarket.zip" class="btn btn-lg btn-dark">Osclass (NoMarket)</a>
-                <a href="https://github.com/navjottomer/Osclass/archive/master.zip" class="btn btn-lg btn-secondary">Osclass 3.8 beta 2</a>
-            </div>
+            <a href="https://github.com/navjottomer/Osclass/releases/download/v3.9.0/osclass-v3.9.0.zip" class="btn btn-lg btn-dark">Osclass 3.9</a>
         </div>
     </div>
 </section>

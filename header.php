@@ -76,7 +76,7 @@
                             <a class="nav-link text-dark" href="https://forums.osclasscommunity.com">Forums</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://forums.osclasscommunity.com/Osclass_380_NoMarket.zip">Osclass 3.8.0</a>
+                            <a class="nav-link text-dark" href="https://github.com/navjottomer/Osclass/releases/download/v3.9.0/osclass-v3.9.0.zip">Osclass 3.9/a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="https://github.com/navjottomer/Osclass">GitHub</a>
